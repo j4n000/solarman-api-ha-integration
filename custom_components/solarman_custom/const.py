@@ -43,7 +43,7 @@ PLATFORMS = ["sensor"]
 # ─── Sensor Description Dataclass ────────────────────────────────────────────
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class SolarmanSensorDescription(SensorEntityDescription):
     """Describe a Solarman sensor."""
 
