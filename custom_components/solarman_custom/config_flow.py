@@ -6,7 +6,7 @@ from typing import Any
 
 import voluptuous as vol
 
-from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
@@ -33,7 +33,7 @@ class SolarmanCustomConfigFlow(ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
+    ) -> dict[str, Any]:
         """Handle the initial step."""
         errors: dict[str, str] = {}
 
@@ -59,17 +59,16 @@ class SolarmanCustomConfigFlow(ConfigFlow, domain=DOMAIN):
                     errors["base"] = "auth_failed"
                 else:
                     # Try to discover station
-                    try:
-                        await api.discover_station()
-                    except SolarmanApiError:
-                        errors["base"] = "no_station"
+                    await api.discover_station()
 
-            except SolarmanAuthError:
+            except SolarmanAuthError as err:
+                _LOGGER.error("Solarman auth error: %s", err)
                 errors["base"] = "auth_failed"
-            except SolarmanApiError:
+            except SolarmanApiError as err:
+                _LOGGER.error("Solarman API error: %s", err)
                 errors["base"] = "connection_error"
-            except Exception:
-                _LOGGER.exception("Unexpected error during config flow")
+            except Exception as err:
+                _LOGGER.exception("Unexpected error during config flow: %s", err)
                 errors["base"] = "unknown"
 
             if not errors:

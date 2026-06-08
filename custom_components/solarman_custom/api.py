@@ -100,7 +100,10 @@ class SolarmanApi:
 
         self._token = data.get("access_token")
         # Token typically expires in 7200s (2 hours); refresh early
-        expires_in = data.get("expires_in", 7200)
+        try:
+            expires_in = int(data.get("expires_in", 7200))
+        except (ValueError, TypeError):
+            expires_in = 7200
         self._token_expiry = time.time() + expires_in - TOKEN_EXPIRY_BUFFER
 
         if not self._token:
