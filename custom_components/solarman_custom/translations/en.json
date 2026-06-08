@@ -1,0 +1,26 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Solarman Custom - Connect",
+                "description": "Enter your Solarman API credentials. Use globalapi.solarmanpv.com.",
+                "data": {
+                    "email": "Email",
+                    "password": "Password",
+                    "app_id": "Application ID",
+                    "app_secret": "Application Secret",
+                    "device_sn": "Inverter Serial Number"
+                }
+            }
+        },
+        "error": {
+            "auth_failed": "Authentication failed. Check your credentials.",
+            "connection_error": "Cannot connect to Solarman API.",
+            "no_station": "No station found for this account.",
+            "unknown": "An unknown error occurred."
+        },
+        "abort": {
+            "already_configured": "This device is already configured."
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Solarman Custom - Csatlakozás",
+                "description": "Add meg a Solarman API hitelesítő adataidat.",
+                "data": {
+                    "email": "E-mail cím",
+                    "password": "Jelszó",
+                    "app_id": "Application ID",
+                    "app_secret": "Application Secret",
+                    "device_sn": "Inverter sorozatszáma"
+                }
+            }
+        },
+        "error": {
+            "auth_failed": "Hitelesítés sikertelen. Ellenőrizd a bejelentkezési adatokat.",
+            "connection_error": "Nem sikerült csatlakozni a Solarman API-hoz.",
+            "no_station": "Nem található erőmű ehhez a fiókhoz.",
+            "unknown": "Ismeretlen hiba történt."
+        },
+        "abort": {
+            "already_configured": "Ez az eszköz már konfigurálva van."
+        }
+    }
+}
