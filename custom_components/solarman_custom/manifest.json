@@ -1,7 +1,7 @@
 {
   "domain": "solarman_custom",
   "name": "Solarman API",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "documentation": "https://github.com/j4n000/solarman-api-ha-integration",
   "issue_tracker": "https://github.com/j4n000/solarman-api-ha-integration/issues",
   "dependencies": [],
