@@ -62,27 +62,34 @@ class SolarmanSensor(CoordinatorEntity[SolarmanCoordinator], SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._device_sn = device_sn
-        self._source = description.source
+        self._source = description.source  # data source (inverter/battery/collector/station)
         self._api_key = description.api_key
+        # device_group determines UI device grouping; defaults to source if empty
+        self._device_group = description.device_group or description.source
 
         # Unique ID: domain_devicesn_sensorkey
         self._attr_unique_id = f"{DOMAIN}_{device_sn}_{description.key}"
 
     @property
     def device_info(self) -> DeviceInfo:
-        """Return device info to group sensors by device."""
-        station_info = self.coordinator.station_info
+        """Return device info to group sensors by device.
 
-        if self._source == "inverter":
+        Uses device_group (not source) so energy sensors from inverter
+        data can appear under the Station device in HA UI.
+        """
+        station_info = self.coordinator.station_info
+        group = self._device_group
+
+        if group == "inverter":
             return DeviceInfo(
                 identifiers={(DOMAIN, self._device_sn)},
                 name=f"Inverter {station_info.get('name', self._device_sn)}",
                 manufacturer="Deye",
                 model="HYD 5KTL-3PH",
                 serial_number=self._device_sn,
-                sw_version=self._get_inverter_value("FWv1"),
+                sw_version=self._get_inverter_value("FWv2"),
             )
-        elif self._source == "battery":
+        elif group == "battery":
             battery_sn = self.coordinator.api.battery_sn or "battery"
             return DeviceInfo(
                 identifiers={(DOMAIN, f"{self._device_sn}_battery")},
@@ -92,7 +99,7 @@ class SolarmanSensor(CoordinatorEntity[SolarmanCoordinator], SensorEntity):
                 serial_number=battery_sn,
                 via_device=(DOMAIN, self._device_sn),
             )
-        elif self._source == "collector":
+        elif group == "collector":
             collector_sn = self.coordinator.api.collector_sn or "collector"
             return DeviceInfo(
                 identifiers={(DOMAIN, f"{self._device_sn}_collector")},
@@ -113,7 +120,10 @@ class SolarmanSensor(CoordinatorEntity[SolarmanCoordinator], SensorEntity):
 
     @property
     def native_value(self) -> str | float | None:
-        """Return the sensor value."""
+        """Return the sensor value.
+
+        Uses self._source (not device_group) to read from the correct data source.
+        """
         if self.coordinator.data is None:
             return None
 
