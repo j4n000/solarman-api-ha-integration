@@ -20,6 +20,7 @@ from homeassistant.const import (
 
 DOMAIN = "solarman_custom"
 DEFAULT_SCAN_INTERVAL = 300  # 5 minutes
+MIN_SCAN_INTERVAL = 60  # 1 minute minimum
 TOKEN_EXPIRY_BUFFER = 300  # Refresh token 5 min before expiry
 
 CONF_APP_ID = "app_id"

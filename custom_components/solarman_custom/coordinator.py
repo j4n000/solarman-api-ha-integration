@@ -17,13 +17,13 @@ _LOGGER = logging.getLogger(__name__)
 class SolarmanCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Coordinator to manage fetching Solarman data."""
 
-    def __init__(self, hass: HomeAssistant, api: SolarmanApi) -> None:
+    def __init__(self, hass: HomeAssistant, api: SolarmanApi, scan_interval: int = DEFAULT_SCAN_INTERVAL) -> None:
         """Initialize the coordinator."""
         super().__init__(
             hass,
             _LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
+            update_interval=timedelta(seconds=scan_interval),
         )
         self.api = api
         self._station_info: dict[str, Any] = {}

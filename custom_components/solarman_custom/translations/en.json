@@ -2,14 +2,18 @@
     "config": {
         "step": {
             "user": {
-                "title": "Solarman Custom - Connect",
+                "title": "Solarman API - Connect",
                 "description": "Enter your Solarman API credentials. Use globalapi.solarmanpv.com.",
                 "data": {
                     "email": "Email",
                     "password": "Password",
                     "app_id": "Application ID",
                     "app_secret": "Application Secret",
-                    "device_sn": "Inverter Serial Number"
+                    "device_sn": "Inverter Serial Number",
+                    "scan_interval": "Update interval (seconds)"
+                },
+                "data_description": {
+                    "scan_interval": "⚠️ Recommended: 300 seconds (5 min). Lower values may cause API rate limiting."
                 }
             }
         },
@@ -21,6 +25,19 @@
         },
         "abort": {
             "already_configured": "This device is already configured."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Solarman API - Settings",
+                "data": {
+                    "scan_interval": "Update interval (seconds)"
+                },
+                "data_description": {
+                    "scan_interval": "⚠️ Recommended: 300 seconds (5 min). Values below 60s may cause API rate limiting and temporary bans."
+                }
+            }
         }
     }
 }
