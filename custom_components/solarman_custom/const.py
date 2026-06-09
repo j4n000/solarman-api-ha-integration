@@ -67,7 +67,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv1_voltage",
         name="PV1 Voltage",
-        api_key="PV1",
+        api_key="DV1",
         native_unit_of_measurement=UnitOfElectricPotential.VOLT,
         device_class=SensorDeviceClass.VOLTAGE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -76,7 +76,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv1_current",
         name="PV1 Current",
-        api_key="C_PV1",
+        api_key="DC1",
         native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
@@ -85,7 +85,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv1_power",
         name="PV1 Power",
-        api_key="PVi_P1",
+        api_key="DP1",
         native_unit_of_measurement=UnitOfPower.WATT,
         device_class=SensorDeviceClass.POWER,
         state_class=SensorStateClass.MEASUREMENT,
@@ -94,7 +94,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv2_voltage",
         name="PV2 Voltage",
-        api_key="PV4",
+        api_key="DV2",
         native_unit_of_measurement=UnitOfElectricPotential.VOLT,
         device_class=SensorDeviceClass.VOLTAGE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -103,7 +103,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv2_current",
         name="PV2 Current",
-        api_key="C_PV4",
+        api_key="DC2",
         native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
@@ -112,7 +112,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="pv2_power",
         name="PV2 Power",
-        api_key="PVi_P4",
+        api_key="DP2",
         native_unit_of_measurement=UnitOfPower.WATT,
         device_class=SensorDeviceClass.POWER,
         state_class=SensorStateClass.MEASUREMENT,
@@ -240,7 +240,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="cumulative_grid_feed_in",
         name="Cumulative Grid Export",
-        api_key="Et_ge_ep0",
+        api_key="t_gc1",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
@@ -249,7 +249,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="daily_grid_export",
         name="Daily Grid Export",
-        api_key="Etdy_ge_ep1",
+        api_key="t_gc_tdy1",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
@@ -258,7 +258,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="cumulative_grid_import",
         name="Cumulative Grid Import",
-        api_key="Et_ge_Epu0",
+        api_key="Et_pu1",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
@@ -267,7 +267,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="daily_grid_import",
         name="Daily Grid Import",
-        api_key="Etdy_ge_Epu1",
+        api_key="Etdy_pu1",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
@@ -276,7 +276,7 @@ INVERTER_SENSORS: tuple[SolarmanSensorDescription, ...] = (
     SolarmanSensorDescription(
         key="cumulative_consumption",
         name="Cumulative Consumption",
-        api_key="Et_ge_PUSE0",
+        api_key="Et_use1",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
